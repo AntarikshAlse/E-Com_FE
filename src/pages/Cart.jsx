@@ -30,7 +30,6 @@ const TopButton = styled("div", {
   boxShadow: `inset 0px 0px 0px $$bd black`,
   backgroundColor: `$$bg`,
   color: `$$clr`,
-  cursor: "pointer",
   minWidth: "14%"
 });
 const Bottom = styled("div", {
@@ -156,7 +155,7 @@ const Cart = () => {
           <Title>Your Bag</Title>
           <Top>
             <TopButton css={{ $$bg: "white", $$bd: "2px" }}>
-              CONTINUE SHOPPING
+              CONTINUE SHOPPING 
             </TopButton>
             <TopTextBox>
               <TopText>Shopping Bag (2)</TopText>
