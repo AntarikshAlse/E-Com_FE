@@ -9,8 +9,9 @@ import Success from "./pages/Success";
 import Cancelled from "./pages/Cancelled";
 import { SnackbarProvider } from "notistack";
 import { useSelector } from "react-redux";
+import PrivateRoute from "./PrivateRoute";
 const App = () => {
-  const user = useSelector((state) => state.user.currentUser);
+  const { currentUser } = useSelector((state) => state.user);
   return (
     <>
       <SnackbarProvider
@@ -19,19 +20,23 @@ const App = () => {
       >
         <BrowserRouter>
           <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/products/:category" element={<ProductList />} />
-            <Route path="/product/:id" element={<Product />} />
-            <Route path="/cart" element={<Cart />} />
-            <Route path="/success" element={<Success />} />
-            <Route path="/cancelled" element={<Cancelled />} />
+            <Route element={<PrivateRoute />}>
+              <Route path="/" element={<Home />} />
+              <Route path="/products/:category" element={<ProductList />} />
+              <Route path="/product/:id" element={<Product />} />
+              <Route path="/cart" element={<Cart />} />
+              <Route path="/success" element={<Success />} />
+              <Route path="/cancelled" element={<Cancelled />} />
+            </Route>
             <Route
               path="/register"
-              element={user ? <Navigate replace to={"/"} /> : <Register />}
+              element={
+                currentUser ? <Navigate replace to={"/"} /> : <Register />
+              }
             />
             <Route
               path="/login"
-              element={user ? <Navigate replace to={"/"} /> : <Login />}
+              element={currentUser ? <Navigate replace to={"/"} /> : <Login />}
             />
           </Routes>
         </BrowserRouter>

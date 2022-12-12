@@ -1,8 +1,9 @@
 import { styled } from "@stitches/react";
 import React, { useState, useRef } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch, useSelector, useNavigate } from "react-redux";
 import { useSnackbar } from "notistack";
 import { login } from "../redux/apiCall";
+import { useNavigate } from "react-router-dom";
 const Container = styled("div", {
   background: `url(/images/shopping-bg.jpg)`,
   height: "100vh",
@@ -56,17 +57,21 @@ const Login = () => {
   const passRef = useRef();
   const { enqueueSnackbar } = useSnackbar();
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const { isFetching, error, errorMessage } = useSelector(
     (state) => state.user
   );
-  const handleLogin = (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
-    login(dispatch, {
-      username: userRef.current.value,
-      password: passRef.current.value,
+    let response = await login(dispatch, {
+      username: username.current.value,
+      password: password.current.value,
     });
-    if (error) {
-      enqueueSnackbar(errorMessage, { variant: "error" });
+    if (response.status === 200) {
+      navigate("/");
+    } else {
+      alert(response.response.data);
+      enqueueSnackbar(response.response.data, { variant: "error" });
     }
   };
   return (
