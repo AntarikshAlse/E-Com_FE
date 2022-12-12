@@ -1,6 +1,6 @@
 import { styled } from "@stitches/react";
 import React, { useState, useRef } from "react";
-import { useDispatch, useSelector, useNavigate } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useSnackbar } from "notistack";
 import { login } from "../redux/apiCall";
 import { useNavigate } from "react-router-dom";
