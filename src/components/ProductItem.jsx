@@ -2,11 +2,14 @@ import { SearchOutlined } from '@mui/icons-material';
 import { ShoppingCartOutlined } from '@mui/icons-material';
 import { FavoriteBorderOutlined } from '@mui/icons-material';
 import stitches from "../stitches";
+import {Link} from "react-router-dom";
 
 const { styled } = stitches;
 
 const Container = styled('div',{
     maxHeight:'20em',
+    minHeight:'12em',
+    backgroundColor:'lightgray',
     width:'15em',
     position:'relative',
     '@bp1':{flex:'initial',width:'auto'}
@@ -46,11 +49,12 @@ const Icon = styled('div',{
     cursor:'pointer',
 });
 const ProductItem = ({item}) => {
+    console.log({item});
   return (
     <Container>
         <Image src={item.img} alt="Product Image"/>
         <Info>
-            <Icon><SearchOutlined/></Icon>
+            <Link to={`/product/${item._id}`}><Icon><SearchOutlined/></Icon></Link>
             <Icon><ShoppingCartOutlined/></Icon>
             <Icon><FavoriteBorderOutlined/></Icon>
         </Info>

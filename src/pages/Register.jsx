@@ -1,5 +1,5 @@
 import stitches from "../stitches";
-
+import React from "react";
 const { styled } = stitches;
 const Container = styled("div", {
   //background: `linear-gradient(111deg, rgba(255,184,50,0.2) 0%, rgba(255,153,0,0.2) 49%, rgba(235,142,2,.2) 100%),url(/images/shopping-bg.jpg)`,

@@ -1,22 +1,22 @@
-import React from 'react'
-import { styled } from '@stitches/react';
+import React from "react";
+import { styled } from "@stitches/react";
 
-const Container = styled('div',{
-    height:'30px',
-    backgroundColor:'teal',
-    color:'white',
-    display:'flex',
-    alignItems:'center',
-    fontSize:'14px',
-    fontWeight:'bold',
-    justifyContent: 'center',
+const Container = styled("div", {
+  height: "30px",
+  backgroundColor: "teal",
+  color: "white",
+  display: "flex",
+  alignItems: "center",
+  fontSize: "14px",
+  fontWeight: "bold",
+  justifyContent: "center",
 });
 const Announcement = () => {
-  return (<>
-        <Container>
-            Super Deal! Get Everything at 50% discount
-        </Container>
-    </>)
-}
+  return (
+    <>
+      <Container>Super Deal! Get Everything at 30% discount</Container>
+    </>
+  );
+};
 
-export default Announcement
+export default Announcement;

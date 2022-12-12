@@ -18,17 +18,20 @@ export const categories = [
 {
     id:1,
     img:"https://images.unsplash.com/photo-1596755094514-f87e34085b2c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=388&q=80",
-    title:"SHIRTS"
+    title:"SHIRTS",
+    cat:'women'
 },
 {
     id:2,
     img:"https://images.unsplash.com/photo-1548126032-079a0fb0099d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Nnx8amFja2V0c3xlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60",
-    title:"JACKETS"
+    title:"JACKETS",
+    cat:'yellow'
 },
 {
     id:3,
     img:"https://images.unsplash.com/photo-1603394151492-5e9b974b090b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=384&q=80",
-    title:"SUITS"
+    title:"SUITS",
+    cat:'Suits'
 },
 ];
 
