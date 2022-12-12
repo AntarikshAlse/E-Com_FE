@@ -5,6 +5,8 @@ import { Badge } from "@mui/material";
 import stitches from "../stitches";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { persistor } from "../redux/store";
+import { useNavigate } from "react-router-dom";
 const { styled } = stitches;
 
 const Container = styled("div", {
@@ -19,17 +21,6 @@ const Wrapper = styled("div", {
 const Left = styled("div", {
   flex: "1",
   display: "flex",
-  alignItems: "center",
-});
-const Language = styled("div", {
-  fontSize: "14px",
-  "@bp1": { display: "none" },
-});
-const SearchContainer = styled("div", {
-  border: ".5px solid grey",
-  display: "flex",
-  marginLeft: "1.2rem",
-  justifyContent: "space-between",
   alignItems: "center",
 });
 const Input = styled("input", {
@@ -53,7 +44,13 @@ const Right = styled("div", {
   "@bp1": { fontSize: "1rem", flex: "2" },
 });
 const Navbar = () => {
+  const navigate = useNavigate();
   const quantity = useSelector((state) => state.cart.cartItems);
+  const { currentUser } = useSelector((state) => state.user);
+  const logout = () => {
+    persistor.purge();
+    navigate("/login");
+  };
   return (
     <Container>
       <Wrapper>
@@ -61,13 +58,18 @@ const Navbar = () => {
           <Logo>Easy Shop</Logo>
         </Left>
         <Right>
-          <Language css={{ bp1: { color: "red" } }}>EN</Language>
-          <SearchContainer>
-            <Input placeholder="Search" />
-            <SearchIcon style={{ color: "lightgray" }} />
-          </SearchContainer>
-          <MenuItem>Register</MenuItem>
-          <MenuItem>SignIn</MenuItem>
+          {currentUser ? (
+            <>
+              <MenuItem onClick={logout}>Logout</MenuItem>
+            </>
+          ) : (
+            <>
+              {/* 
+              <MenuItem>Register</MenuItem>
+              <MenuItem>SignIn</MenuItem> */}
+            </>
+          )}
+
           <Link to="/cart">
             <MenuItem>
               <Badge badgeContent={quantity} color="primary">

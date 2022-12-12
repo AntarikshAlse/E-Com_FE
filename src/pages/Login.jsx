@@ -3,7 +3,7 @@ import React, { useState, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useSnackbar } from "notistack";
 import { login } from "../redux/apiCall";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 const Container = styled("div", {
   background: `url(/images/shopping-bg.jpg)`,
   height: "100vh",
@@ -43,15 +43,15 @@ const Button = styled("button", {
   cursor: "pointer",
   "&:disabled": { backgroundColor: "Gray", cursor: "not-allowed" },
 });
-const Link = styled("a", {
+const LinkTo = {
   fontSize: "1rem",
   fontWeight: "400",
   alignSelf: "center",
   margin: ".3rem 0",
   color: "DodgerBlue",
   cursor: "pointer",
-  textDecoration: "underline",
-});
+  textDecoration: "none",
+};
 const Login = () => {
   const userRef = useRef();
   const passRef = useRef();
@@ -64,28 +64,39 @@ const Login = () => {
   const handleLogin = async (e) => {
     e.preventDefault();
     let response = await login(dispatch, {
-      username: username.current.value,
-      password: password.current.value,
+      username: userRef.current.value,
+      password: passRef.current.value,
     });
     if (response.status === 200) {
+      if (response.data === "Wrong Password") {
+        enqueueSnackbar(response.data, { variant: "error" });
+        return;
+      }
       navigate("/");
     } else {
-      alert(response.response.data);
-      enqueueSnackbar(response.response.data, { variant: "error" });
+      if (response.response.status === 401) {
+        enqueueSnackbar(response.response.data, { variant: "error" });
+        return;
+      }
+      enqueueSnackbar(response.message, { variant: "error" });
     }
   };
   return (
     <Container>
       <Wrapper>
         <Title>Sign In</Title>
-        <Form>
-          <Input placeholder="Username" ref={userRef} />
-          <Input placeholder="Password" type="password" ref={passRef} />
-          <Button onClick={handleLogin} disabled={Boolean(isFetching)}>
-            Login
-          </Button>
-          <Link>Forgot Password</Link>
-          <Link>CREATE NEW ACCOUNT</Link>
+        <Form onSubmit={handleLogin}>
+          <Input placeholder="Username" ref={userRef} required />
+          <Input
+            placeholder="Password"
+            type="password"
+            ref={passRef}
+            required
+          />
+          <Button disabled={Boolean(isFetching)}>Login</Button>
+          <Link to="/register" style={LinkTo}>
+            CREATE NEW ACCOUNT
+          </Link>
         </Form>
       </Wrapper>
     </Container>

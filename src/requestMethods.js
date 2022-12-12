@@ -8,11 +8,11 @@ const TOKEN = TokenContainer ? JSON.parse(TokenContainer).accessToken : "";
 
 export const publicRequest = axios.create({
   baseURL: BASE_URL,
-  timeout: 1000,
+  // timeout: 1000, // Implement if api keeps in pending
 });
 
 export const userRequest = axios.create({
   baseURL: BASE_URL,
-  timeout: 1000,
+  // timeout: 1000, // Implement if api keeps in pending
   header: { token: `Bearer ${TOKEN}` },
 });

@@ -28,16 +28,8 @@ const App = () => {
               <Route path="/success" element={<Success />} />
               <Route path="/cancelled" element={<Cancelled />} />
             </Route>
-            <Route
-              path="/register"
-              element={
-                currentUser ? <Navigate replace to={"/"} /> : <Register />
-              }
-            />
-            <Route
-              path="/login"
-              element={currentUser ? <Navigate replace to={"/"} /> : <Login />}
-            />
+            <Route path="/register" element={<Register />} />
+            <Route path="/login" element={<Login />} />
           </Routes>
         </BrowserRouter>
       </SnackbarProvider>
