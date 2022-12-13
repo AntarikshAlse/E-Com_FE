@@ -20,19 +20,19 @@ const Products = ({ cat, filters, sort }) => {
   const { enqueueSnackbar } = useSnackbar();
   const [products, setProducts] = useState([]);
   const [filteredProducts, setFilteredProducts] = useState([]);
-  // useEffect(() => {
-  //   const getProducts = async () => {
-  //     try {
-  //       let url = cat ? `products?category=${cat}` : `products`;
-  //       const res = await publicRequest.get(url);
-  //       setProducts(res.data);
-  //     } catch (error) {
-  //       console.log(error);
-  //       enqueueSnackbar(error.message, { variant: "error" });
-  //     }
-  //   };
-  //   getProducts();
-  // }, [cat]);
+  useEffect(() => {
+    const getProducts = async () => {
+      try {
+        let url = cat ? `products?category=${cat}` : `products`;
+        const res = await publicRequest.get(url);
+        setProducts(res.data);
+      } catch (error) {
+        console.log(error);
+        enqueueSnackbar(error.message, { variant: "error" });
+      }
+    };
+    getProducts();
+  }, [cat]);
 
   useEffect(() => {
     cat &&
