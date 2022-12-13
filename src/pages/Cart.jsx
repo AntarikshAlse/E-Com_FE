@@ -25,14 +25,15 @@ const Top = styled("div", {
 const Title = styled("h1", {
   marginBottom: ".6rem",
 });
-const TopButton = styled("div", {
+const TopButton = styled("button", {
   padding: "10px",
   cursor: "pointer",
   fontWeight: "600",
-  //border: `$$bd`,
+  border: `$$bd`,
   boxShadow: `inset 0px 0px 0px $$bd black`,
   backgroundColor: `$$bg`,
   color: `$$clr`,
+  marginTop: "1em",
   minWidth: "14%",
 });
 const Bottom = styled("div", {
@@ -146,6 +147,7 @@ const Cart = () => {
   const { enqueueSnackbar } = useSnackbar();
   const cart = useSelector((state) => state.cart);
   const products = cart.products;
+  const isCartEmpty = Boolean(products.length === 0);
   const checkout = async (e) => {
     e.preventDefault();
     try {
@@ -162,30 +164,6 @@ const Cart = () => {
     } catch (err) {
       enqueueSnackbar(err.response.data.error, { variant: "error" });
     }
-    /*     fetch("http://localhost:5000/api/checkout/payment", {
-      method: "POST",
-      // headers: {
-      //   "Accept": "application/json",
-      //   "Content-Type": "application/json",
-      //   "Access-Control-Allow-Origin": "*",
-      //   "Access-Control-Allow-Methods": "*",
-      // },
-      body: JSON.stringify({ amount: Number(cart.total * 100) }),
-    })
-      .then((res) => {
-        if (res.ok) return res.json();
-        // If there is an error then make sure we catch that
-        return res
-          .json()
-          .then((err) => enqueueSnackbar(e.message, { variant: "error" }));
-      })
-      .then(({ url }) => {
-        // On success redirect the customer to the returned URL
-        window.location = url;
-      })
-      .catch((e) => {
-        enqueueSnackbar(e.message, { variant: "error" });
-      }); */
   };
   return (
     <>
@@ -195,21 +173,10 @@ const Cart = () => {
         <Wrapper>
           <Title>Your Bag</Title>
           <Top>
-            <Link to="/">
-              <TopButton css={{ $$bg: "white", $$bd: "2px" }}>
-                CONTINUE SHOPPING
-              </TopButton>
-            </Link>
             <TopTextBox>
               <TopText>Shopping Bag (2)</TopText>
               <TopText>Your WhishList (2)</TopText>
             </TopTextBox>
-            <TopButton
-              css={{ $$bg: "darkorange", $$bd: "none" }}
-              onClick={checkout}
-            >
-              CHECKOUT NOW
-            </TopButton>
           </Top>
           <Bottom>
             <Info>
@@ -245,6 +212,16 @@ const Cart = () => {
                   <Hr />
                 </React.Fragment>
               ))}
+              {products.length === 0 && (
+                <>
+                  <h1>Your Cart is Empty</h1>
+                  <Link to="/">
+                    <TopButton css={{ $$bg: "white", $$bd: "1px" }}>
+                      CONTINUE SHOPPING
+                    </TopButton>
+                  </Link>
+                </>
+              )}
             </Info>
             <Summary>
               <SummaryTitle>ORDER SUMMARY</SummaryTitle>
@@ -264,7 +241,9 @@ const Cart = () => {
                 <SummaryItemText>Total</SummaryItemText>
                 <SummaryItemPrice>$ {cart.total}</SummaryItemPrice>
               </SummaryItem>
-              <SummaryButton onClick={checkout}>CHECKOUT NOW</SummaryButton>
+              <SummaryButton onClick={checkout} disabled={isCartEmpty}>
+                CHECKOUT NOW
+              </SummaryButton>
             </Summary>
           </Bottom>
         </Wrapper>

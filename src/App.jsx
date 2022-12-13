@@ -21,12 +21,18 @@ const App = () => {
         <HashRouter>
           <Routes>
             <Route element={<PrivateRoute />}>
-              <Route path="/" element={<Home />} />
-              <Route path="/products/:category" element={<ProductList />} />
-              <Route path="/product/:id" element={<Product />} />
-              <Route path="/cart" element={<Cart />} />
-              <Route path="/success" element={<Success />} />
-              <Route path="/cancelled" element={<Cancelled />} />
+              {currentUser ? (
+                <>
+                  <Route path="/" element={<Home />} />
+                  <Route path="/products/:category" element={<ProductList />} />
+                  <Route path="/product/:id" element={<Product />} />
+                  <Route path="/cart" element={<Cart />} />
+                  <Route path="/success" element={<Success />} />
+                  <Route path="/cancelled" element={<Cancelled />} />
+                </>
+              ) : (
+                <Navigate to="/login" />
+              )}
             </Route>
             {!currentUser && <Route path="/register" element={<Register />} />}
             <Route path="/login" element={<Login />} />

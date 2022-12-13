@@ -1,5 +1,4 @@
 import React from "react";
-import SearchIcon from "@mui/icons-material/Search";
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import { Badge } from "@mui/material";
 import stitches from "../stitches";
@@ -63,11 +62,7 @@ const Navbar = () => {
               <MenuItem onClick={logout}>Logout</MenuItem>
             </>
           ) : (
-            <>
-              {/* 
-              <MenuItem>Register</MenuItem>
-              <MenuItem>SignIn</MenuItem> */}
-            </>
+            <></>
           )}
 
           <Link to="/cart">

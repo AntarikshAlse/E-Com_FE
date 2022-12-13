@@ -13,6 +13,6 @@ export const publicRequest = axios.create({
 
 export const userRequest = axios.create({
   baseURL: BASE_URL,
-  // timeout: 1000, // Implement if api keeps in pending
+  // timeout: 1000,
   header: { token: `Bearer ${TOKEN}` },
 });
