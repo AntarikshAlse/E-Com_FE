@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { HashRouter, Routes, Route, Navigate } from "react-router-dom";
 import Home from "./pages/Home";
 import ProductList from "./pages/ProductList";
 import Product from "./pages/Product";
@@ -18,7 +18,7 @@ const App = () => {
         autoHideDuration={2000}
         anchorOrigin={{ vertical: "top", horizontal: "center" }}
       >
-        <BrowserRouter>
+        <HashRouter>
           <Routes>
             <Route element={<PrivateRoute />}>
               <Route path="/" element={<Home />} />
@@ -28,10 +28,10 @@ const App = () => {
               <Route path="/success" element={<Success />} />
               <Route path="/cancelled" element={<Cancelled />} />
             </Route>
-            <Route path="/register" element={<Register />} />
+            {!currentUser && <Route path="/register" element={<Register />} />}
             <Route path="/login" element={<Login />} />
           </Routes>
-        </BrowserRouter>
+        </HashRouter>
       </SnackbarProvider>
     </>
   );
