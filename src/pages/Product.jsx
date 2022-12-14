@@ -108,17 +108,17 @@ const Product = () => {
   const colorRef = useRef("");
   const sizeRef = useRef("");
   const dispatch = useDispatch();
-  // useEffect(() => {
-  //   async function fetchData() {
-  //     try {
-  //       let response = await publicRequest.get("/products/find/" + id);
-  //       setProduct(response.data);
-  //     } catch (e) {
-  //       enqueueSnackbar(e.message, { variant: "error" });
-  //     }
-  //   }
-  //   fetchData();
-  // }, [id]);
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        let response = await publicRequest.get("/products/find/" + id);
+        setProduct(response.data);
+      } catch (e) {
+        enqueueSnackbar(e.message, { variant: "error" });
+      }
+    }
+    fetchData();
+  }, [id]);
 
   const handleQuantity = (type) => {
     if (type === "inc") {

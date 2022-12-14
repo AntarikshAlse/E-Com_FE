@@ -1,5 +1,5 @@
 import { styled } from "@stitches/react";
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useSnackbar } from "notistack";
 import { login } from "../redux/apiCall";
@@ -86,9 +86,9 @@ const Login = () => {
       <Wrapper>
         <Title>Sign In</Title>
         <Form onSubmit={handleLogin}>
-          <Input placeholder="Username" ref={userRef} required />
+          <Input placeholder="Default Username: admin" ref={userRef} required />
           <Input
-            placeholder="Password"
+            placeholder="Default Password: 123456"
             type="password"
             ref={passRef}
             required
