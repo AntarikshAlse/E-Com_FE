@@ -11,6 +11,7 @@ import { SnackbarProvider } from "notistack";
 import { useSelector } from "react-redux";
 import PrivateRoute from "./PrivateRoute";
 import { useEffect, useState } from "react";
+import Error404Page from "./pages/Error404page";
 const App = () => {
   const { currentUser } = useSelector((state) => state.user);
 
@@ -29,6 +30,7 @@ const App = () => {
               <Route path="/cart" element={<Cart />} />
               <Route path="/success" element={<Success />} />
               <Route path="/cancelled" element={<Cancelled />} />
+              <Route path="*" element={<Error404Page />} />
             </Route>
             <Route path="/register" element={<Register />} />
             <Route path="/login" element={<Login />} />

@@ -16,19 +16,34 @@ import { useDispatch } from "react-redux";
 const { styled } = stitches;
 const Container = styled("div", {});
 const Wrapper = styled("div", {
-  display: "flex",
+  /*   display: "flex",
   //flexWrap:'wrap', //wrap at media query mobile
   padding: "0.6rem",
-  "@bp1": { flexDirection: "column" },
+  "@bp1": { flexDirection: "column" },     */
+
+  display: "grid",
+  gridTemplateColumns: "1fr 1fr",
+  gridTemplateRows: "1fr",
+  gridAutoFlow: "row",
+  margin: "2em auto",
+  columnGap: "10%",
+  maxWidth: "75%",
+  border: "2px solid teal",
+  borderRadius: ".2em",
+});
+const ImageContainer = styled("div", {
+  maxHeight: "30em",
 });
 const Image = styled("img", {
-  maxHeight: "60vh",
+  height: "100%",
   width: "100%",
-  objectFit: "cover",
+  objectFit: "contain",
 });
 const Title = styled("h2", {});
 const Desc = styled("p", {});
 const InfoContainer = styled("div", {
+  maxWidth: "70%",
+  borderLeft: "2px solid teal",
   display: "flex",
   flexDirection: "column",
   padding: "0 2rem 1rem 1rem",
@@ -148,7 +163,9 @@ const Product = () => {
       <Navbar />
       <Announcement />
       <Wrapper>
-        <Image src={product.img} alt="Product Image" />
+        <ImageContainer>
+          <Image src={product.img} alt="Product Image" />
+        </ImageContainer>
         <InfoContainer>
           <Title>{product.title}</Title>
           <Desc>{product.desc}</Desc>
