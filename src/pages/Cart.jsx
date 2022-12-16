@@ -172,12 +172,7 @@ const Cart = () => {
         <Announcement />
         <Wrapper>
           <Title>Your Bag</Title>
-          <Top>
-            <TopTextBox>
-              <TopText>Shopping Bag (2)</TopText>
-              <TopText>Your WhishList (2)</TopText>
-            </TopTextBox>
-          </Top>
+          <Top>{/* Top Container */}</Top>
           <Bottom>
             <Info>
               {products?.map((product, index) => (
@@ -200,9 +195,11 @@ const Cart = () => {
                     </ProductDetail>
                     <PriceDetail>
                       <ProductAmountContainer>
-                        <Add />
-                        <ProductAmount>{product.quantity}</ProductAmount>
-                        <Remove />
+                        {/* <Add /> */}
+                        <ProductAmount>
+                          <b>Qty:</b> {product.quantity}
+                        </ProductAmount>
+                        {/* <Remove /> */}
                       </ProductAmountContainer>
                       <ProductPrice>
                         $ {product.price * product.quantity}
