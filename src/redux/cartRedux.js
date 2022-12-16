@@ -13,8 +13,19 @@ const cartSlice = createSlice({
       currentState.products.push(action.payload);
       currentState.total += action.payload.price * action.payload.quantity;
     },
+    deleteProduct: (currentState, action) => {
+      currentState.cartItems -= 1;
+      let indexToDelete = currentState.products.findIndex(
+        (item) => item._id === action.payload.id
+      );
+      //substract product
+      currentState.total -=
+        currentState.products[indexToDelete].price *
+        currentState.products[indexToDelete].quantity;
+      currentState.products.splice(indexToDelete, 1);
+    },
   },
 });
 
-export const { addProduct } = cartSlice.actions;
+export const { addProduct, deleteProduct } = cartSlice.actions;
 export default cartSlice.reducer;

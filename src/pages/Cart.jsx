@@ -6,10 +6,12 @@ import Footer from "../components/Footer";
 import React from "react";
 import { Add, Remove } from "@mui/icons-material";
 const { styled } = stitches;
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { useSnackbar } from "notistack";
 import { userRequest } from "../requestMethods";
+import { Delete } from "@mui/icons-material";
+import { deleteProduct } from "../redux/cartRedux";
 const Container = styled("div", {});
 const Wrapper = styled("div", {
   padding: "20px",
@@ -142,12 +144,17 @@ const SummaryButton = styled("button", {
   fontWeight: "600",
   fontSize: "1rem",
   border: "none",
+  cursor: "pointer",
 });
 const Cart = () => {
   const { enqueueSnackbar } = useSnackbar();
   const cart = useSelector((state) => state.cart);
   const products = cart.products;
   const isCartEmpty = Boolean(products.length === 0);
+  const dispatch = useDispatch();
+  const removeProduct = (id) => {
+    dispatch(deleteProduct({ id }));
+  };
   const checkout = async (e) => {
     e.preventDefault();
     try {
@@ -195,15 +202,23 @@ const Cart = () => {
                     </ProductDetail>
                     <PriceDetail>
                       <ProductAmountContainer>
-                        {/* <Add /> */}
                         <ProductAmount>
                           <b>Qty:</b> {product.quantity}
                         </ProductAmount>
-                        {/* <Remove /> */}
                       </ProductAmountContainer>
                       <ProductPrice>
                         $ {product.price * product.quantity}
                       </ProductPrice>
+                    </PriceDetail>
+                    <PriceDetail>
+                      <ProductAmountContainer>
+                        <ProductAmount>
+                          <Delete
+                            onClick={() => removeProduct(product._id)}
+                            style={{ cursor: "pointer", color: "red" }}
+                          />
+                        </ProductAmount>
+                      </ProductAmountContainer>
                     </PriceDetail>
                   </Product>
                   <Hr />
