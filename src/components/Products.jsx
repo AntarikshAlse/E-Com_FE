@@ -35,9 +35,10 @@ const Products = ({ cat, filters, sort }) => {
   }, [cat]);
 
   useEffect(() => {
+    let Products = [...products];
     cat &&
       setFilteredProducts(
-        products.filter((item) =>
+        Products.filter((item) =>
           Object.entries(filters).every(([key, value]) =>
             item[key].includes(value)
           )
@@ -67,7 +68,7 @@ const Products = ({ cat, filters, sort }) => {
             <ProductItem item={product} key={product._id} />
           ))
         : products
-            .slice(0, 8) // Max of 8  items on home page
+            .slice(0, 12) // Max of 12  items on home page
             .map((product) => <ProductItem item={product} key={product._id} />)}
     </Container>
   );

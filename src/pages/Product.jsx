@@ -181,16 +181,6 @@ const Product = () => {
                 />
               ))}
             </Filter>
-            <Filter>
-              <FilterTitle>Size</FilterTitle>
-              <FilterSize ref={sizeRef}>
-                {product.size?.map((size) => (
-                  <Option key={size} value={size}>
-                    {size}
-                  </Option>
-                ))}
-              </FilterSize>
-            </Filter>
           </FilterContainer>
           <AddContainer>
             <AmountContainer>

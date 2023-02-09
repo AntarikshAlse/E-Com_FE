@@ -57,29 +57,9 @@ const ProductList = () => {
             <Option disabled value="Color">
               Color
             </Option>
-            <Option value="white">White</Option>
-            <Option value="yellow">Yellow</Option>
-            <Option value="green">Green</Option>
+            <Option value="black">Black</Option>
             <Option value="blue">Blue</Option>
-            <Option value="red">Red</Option>
             <Option value="grey">Grey</Option>
-          </Select>
-          <Select name="size" onChange={handleFilters}>
-            <Option disabled value="Size">
-              Size
-            </Option>
-            <Option value="XL">XL</Option>
-            <Option value="L">L</Option>
-            <Option value="M">M</Option>
-            <Option value="S">S</Option>
-          </Select>
-        </Filter>
-        <Filter>
-          <FilterText>Sort Products :</FilterText>
-          <Select onChange={(e) => setSort(e.target.value)}>
-            <Option value="newest">Newest</Option>
-            <Option value="low">Lowest Price</Option>
-            <Option value="high">Highest Price</Option>
           </Select>
         </Filter>
       </FilterContainer>
