@@ -54,7 +54,7 @@ const ProductList = () => {
         <Filter>
           <FilterText htmlFor="color">Filter Products :</FilterText>
           <Select id="color" name="color" onChange={handleFilters}>
-            <Option disabled value="Color">
+            <Option disabled selected value="Color">
               Color
             </Option>
             <Option value="black">Black</Option>

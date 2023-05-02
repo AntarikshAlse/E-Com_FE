@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
-
+import { clearCart } from "../redux/cartRedux";
 const Success = () => {
+  const dispatch = useDispatch();
   const payBtn = {
     border: "none",
     color: "white",
@@ -24,6 +26,9 @@ const Success = () => {
     margin: "1rem",
     color: "teal",
   };
+  useEffect(() => {
+    dispatch(clearCart());
+  }, []);
   return (
     <div style={container}>
       <h1 style={title}>Successfull</h1>

@@ -13,6 +13,7 @@ const Container = styled("div", {
   display: "flex",
   flexWrap: "wrap",
   padding: "1rem",
+  justifyContent: "center",
   gap: ".6rem",
 });
 
@@ -61,6 +62,13 @@ const Products = ({ cat, filters, sort }) => {
     }
   }, [sort]);
 
+  if (cat && !filteredProducts.length) {
+    return (
+      <Container>
+        <h2>No products found</h2>
+      </Container>
+    );
+  }
   return (
     <Container>
       {cat

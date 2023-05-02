@@ -1,65 +1,65 @@
-import { SearchOutlined } from '@mui/icons-material';
-import { ShoppingCartOutlined } from '@mui/icons-material';
-import { FavoriteBorderOutlined } from '@mui/icons-material';
+import { SearchOutlined } from "@mui/icons-material";
+import { ShoppingCartOutlined } from "@mui/icons-material";
+import { FavoriteBorderOutlined } from "@mui/icons-material";
 import stitches from "../stitches";
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const { styled } = stitches;
 
-const Container = styled('div',{
-    maxHeight:'20em',
-    minHeight:'12em',
-    backgroundColor:'lightgray',
-    width:'15em',
-    position:'relative',
-    '@bp1':{flex:'initial',width:'auto'}
+const Container = styled("div", {
+  maxHeight: "20em",
+  minHeight: "12em",
+  backgroundColor: "lightgray",
+  width: "15em",
+  position: "relative",
+  "@bp1": { flex: "initial", width: "auto" },
 });
-const Image = styled('img',{
-    height:'100%',
-    width:'100%',
-     objectFit:'cover',
-    
+const Image = styled("img", {
+  height: "100%",
+  width: "100%",
+  objectFit: "cover",
 });
-const Info = styled('div',{
-    position:'absolute',
-    inset:'0 0',
-    display: 'flex',
-    flexWrap:'wrap',
-    justifyContent: 'center',
-    alignItems: 'center',
-    '&:hover':{
-        backgroundColor:'rgba(229, 229, 229, 0.5)',
-        transition: 'all 0.4s ease'
-    }
+const Info = styled("div", {
+  position: "absolute",
+  inset: "0 0",
+  display: "flex",
+  flexWrap: "wrap",
+  justifyContent: "center",
+  alignItems: "center",
+  "&:hover": {
+    backgroundColor: "rgba(229, 229, 229, 0.5)",
+    transition: "all 0.4s ease",
+  },
 });
-const Icon = styled('div',{
-    height:'1em',
-    width:'1em',
-    borderRadius:'50%',
-    display:'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor:'white',
-    padding: '10px',
-    '&:hover':{
-        transform:'scale(1.1)',
-        transition: 'all 0.4s ease'
-    },
-    margin:'0.2em',
-    cursor:'pointer',
+const Icon = styled("div", {
+  height: "1em",
+  width: "1em",
+  borderRadius: "50%",
+  display: "flex",
+  justifyContent: "center",
+  alignItems: "center",
+  backgroundColor: "white",
+  padding: "10px",
+  "&:hover": {
+    transform: "scale(1.1)",
+    transition: "all 0.4s ease",
+  },
+  margin: "0.2em",
+  cursor: "pointer",
 });
-const ProductItem = ({item}) => {
-    console.log({item});
+const ProductItem = ({ item }) => {
   return (
     <Container>
-        <Image src={item.img} alt="Product Image"/>
-        <Info>
-            <Link to={`/product/${item._id}`}><Icon><SearchOutlined/></Icon></Link>
-            <Icon><ShoppingCartOutlined/></Icon>
-            <Icon><FavoriteBorderOutlined/></Icon>
-        </Info>
+      <Image src={item.img} alt="Product Image" />
+      <Info>
+        <Link to={`/product/${item._id}`}>
+          <Icon>
+            <SearchOutlined />
+          </Icon>
+        </Link>
+      </Info>
     </Container>
-  )
-}
+  );
+};
 
-export default ProductItem
+export default ProductItem;
